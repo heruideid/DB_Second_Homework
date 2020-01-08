@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block navigate %}
+{% if current_user.has_lower_jw_auth() %}
+<div class="info">您正在以管理身份访问学生{{ sno }}视图，<a href="{{ url_for('index') }}">点击返回</a></div>
+{% endif %}
+<nav>
+    <ul>
+        <li><a href="{{ url_for('stu_index', sno=sno) }}">回到主页</a></li>
+        <li><a href="{{ url_for('stu_info', sno=sno) }}">修改信息</a></li>
+        <li><a href="{{ url_for('stu_pwd', sno=sno) }}">修改密码</a></li>
+        <li><a href="{{ url_for('stu_course', sno=sno) }}">课程管理</a></li>
+        <li><a href="{{ url_for('stu_book', sno=sno) }}">购书管理</a></li>
+        <li><a href="{{ url_for('stu_timetable', sno=sno) }}">查看课表</a></li>
+    </ul>
+</nav>
+{% endblock %}
+{% block content %}
+<div class="index_info">书山有路勤为径。学海无涯苦作舟。同学您好！</div>
+{% endblock %}

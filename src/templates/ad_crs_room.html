@@ -1,0 +1,19 @@
+{% extends 'lower.html' %}
+
+{% block content %}
+<p>为课程{{ cno }}排课，周{{ x }}第{{ y }}节</p>
+<table class="gridtable">
+    <tr>
+        <th>教室名</th><th>容量</th><th>排课</th>
+    </tr>
+    {% for info in rinfo %}
+    <tr>
+        <td>{{ info[0] }}</td>
+        <td>{{ info[1] }}</td>
+        <td><form class="inline-form" method="post" action="{{ url_for('ad_arrange', cno=cno, x=x, y=y, room=info[0]) }}">
+            <input class="btn" type="submit" value="排课">
+        </form></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

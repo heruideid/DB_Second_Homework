@@ -1,0 +1,56 @@
+{% extends 'tec_index.html' %}
+
+{% block content %}
+<form method="post" class="center-form" action="{{ url_for('tec_course', tno=tno) }}">
+    <input type="hidden" name="op" value="new">
+    课程名 <input type="text" name="cname" autocomplete="off" required><br>
+    开课系 <input type="text" name="cdept" autocomplete="off" required><br>
+    课容量 <input type="text" name="ccap" autocomplete="off" required><br>
+    学分 <input type="text" name="ccredit" autocomplete="off" required><br>
+    开课时间 <input type="text" name="cdate" autocomplete="off" required><br>
+    <input class="btn" type="submit" value="开课">
+</form>
+<table class="gridtable">
+    <tr>
+        <th>代号</th><th>课程名</th><th>院系</th><th>任课教师</th><th>学分</th>
+        <th>开课时间</th><th>上课时间</th><th>助教</th><th>详细信息</th><th>管理</th><th>消课</th>
+    </tr>
+    {% for info in cinfo %}
+    <tr>
+        <td>{{ info['cno'] }}</td>
+        <td>{{ info['cname'] }}</td>
+        {% if info['cdept'] %}
+            <td>{{ info['dname'] }}</td>
+        {% else %}
+            <td>&nbsp;</td>
+        {% endif %}
+        {% if info['cteacher'] %}
+            <td>{% for t in info['cteacher'] %}
+                {{ t }}<br>
+                {% endfor %}
+            </td>
+        {% else %}
+            <td>&nbsp;</td>
+        {% endif %}
+        <td>{{ info['ccredit'] }}</td>
+        <td>{{ info['cdate'] }}</td>
+        <td>{% for rname, time in info['croom'] %}
+            {{ '['+rname+','+time+']' }}<br>
+            {% endfor %}
+        </td>
+        {% if info['cta'] %}
+            <td>{{ info['cta']|join(';') }}</td>
+        {% else %}
+            <td>&nbsp;</td>
+        {% endif %}
+        <td><a class="btn" href="{{ url_for('tec_course_info', tno=tno, cno=info['cno']) }}" title="信息">信息</a></td>
+        <td><a class="btn" href="{{ url_for('tec_course_stu', tno=tno, cno=info['cno']) }}" title="管理">管理</a></td>
+        <td><form class="inline-form" method="post" action="{{ url_for('tec_course', tno=tno) }}">
+                <input type="hidden" name="op" value="delete">
+                <input type="hidden" name="cno" value="{{ info['cno'] }}">
+                <input class="btn" type="submit" value="消课" onclick="return confirm('确认取消该课程吗？')">
+            </form></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

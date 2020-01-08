@@ -1,0 +1,24 @@
+{% extends 'lower.html' %}
+
+{% block content %}
+<p>为课程{{ cno }}排课</p>
+<table class="gridtable">
+    <tr>
+        <th>节数</th><th>周一</th><th>周二</th><th>周三</th><th>周四</th><th>周五</th><th>周六</th><th>周日</th>
+    </tr>
+    {% for j in range(14) %}
+    <tr>
+        <td>{{ j + 1 }}</td>
+        {% for i in range(7) %}
+            {% if table[i][j] %}
+            <td>
+            不可排课
+            </td>
+            {% else %}
+            <td><a class="btn" href="{{ url_for('ad_crs_room', cno=cno, x=i+1, y=j+1) }}" title="排课">排课</a></td>
+            {% endif %}
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    {% block head %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>综合教务管理系统</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css">
+    {% endblock %}
+</head>
+<body>
+    {% for message in get_flashed_messages() %}
+        <div class="alert">{{ message }}</div>
+    {% endfor %}
+    <h2>
+        综合教务管理系统
+    </h2>
+    {% block user %}
+    <p>
+        <img alt="user" class="user_logo" src="{{ url_for('static', filename='user_logo.png') }}">
+        {% if not current_user.is_authenticated %}
+        游客
+        {% elif current_user.status == 'Student' %}
+        学生{{ current_user.no }}<a class="btn" href="{{ url_for('logout') }}" title="logout">注销</a>
+        {% elif current_user.status == 'Teacher' %}
+        教师{{ current_user.no }}<a class="btn" href="{{ url_for('logout') }}" title="logout">注销</a>
+        {% elif current_user.status == 'Jiaowu' %}
+        教务{{ current_user.no }}<a class="btn" href="{{ url_for('logout') }}" title="logout">注销</a>
+        {% elif current_user.status == 'Administrator' %}
+        管理员{{ current_user.no }}<a class="btn" href="{{ url_for('logout') }}" title="logout">注销</a>
+        {% endif %}
+    </p>
+    {% endblock %}
+    {% block navigate %}
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}">回到主页</a></li>
+        </ul>
+    </nav>
+    {% endblock %}
+    <p></p>{% block content %}{% endblock %}<p></p>
+    <img alt="BUAA" class="buaa_logo" src="{{ url_for('static', filename='buaa_logo.png') }}">
+    <footer>
+        <small>&copy; 2019 何瑞 李瑞康</small>
+	</footer>
+</body>
+</html>

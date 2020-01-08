@@ -1,0 +1,59 @@
+{% extends 'ad_index.html' %}
+
+{% block content %}
+<form method="post" class="center-form" action="{{ url_for('ad_jw') }}">
+    <input type="hidden" name="op" value="jno">
+    工号 <input type="text" name="jno" autocomplete="off" required>
+    <input class="btn" type="submit" value="检索">
+</form>
+<p></p>
+<form method="post" class="center-form" action="{{ url_for('ad_jw') }}">
+    <input type="hidden" name="op" value="jname">
+    姓名 <input type="text" name="jname" autocomplete="off" required>
+    <input class="btn" type="submit" value="检索">
+</form>
+<p></p>
+<form method="post" class="center-form" action="{{ url_for('ad_jw') }}">
+    <input type="hidden" name="op" value="new">
+    工号 <input type="text" name="jno" autocomplete="off" required>
+    身份证号 <input type="text" name="jid" autocomplete="off" required><br>
+    姓名 <input type="text" name="jname" autocomplete="off" required><br>
+    电话 <input type="text" name="jtel" autocomplete="off">
+    邮箱 <input type="text" name="jmail" autocomplete="off">
+    <input class="btn" type="submit" value="新建教务">
+</form>
+<p></p>
+<table class="gridtable">
+    <tr>
+        <th>工号</th><th>身份证号</th><th>姓名</th><th>电话</th><th>邮箱</th><th>进入视图</th><th>重置密码</th><th>删除</th>
+    </tr>
+    {% for info in sinfo %}
+    <tr>
+        <td>{{ info['jno'] }}</td>
+        <td>{{ info['jid'] }}</td>
+        <td>{{ info['jname'] }}</td>
+        {% if info['jtel'] %}
+            <td>{{ info['jtel'] }}</td>
+        {% else %}
+            <td>&nbsp;</td>
+        {% endif %}
+        {% if info['jmail'] %}
+            <td>{{ info['jmail'] }}</td>
+        {% else %}
+            <td>&nbsp;</td>
+        {% endif %}
+        <td><a class="btn" href="{{ url_for('jw_index', jno=info['jno']) }}" title="教务视图">教务视图</a></td>
+        <td><form class="inline-form" method="post" action="{{ url_for('ad_jw') }}">
+            <input type="hidden" name="op" value="pwd">
+            <input type="hidden" name="jno" value="{{ info['jno'] }}">
+            <input class="btn" type="submit" value="重置" onclick="return confirm('确认重置密码吗？')">
+        </form></td>
+        <td><form class="inline-form" method="post" action="{{ url_for('ad_jw') }}">
+            <input type="hidden" name="op" value="delete">
+            <input type="hidden" name="jno" value="{{ info['jno'] }}">
+            <input class="btn" type="submit" value="删除" onclick="return confirm('确认删除教务吗？')">
+        </form></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

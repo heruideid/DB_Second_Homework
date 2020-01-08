@@ -1,0 +1,90 @@
+{% extends 'stu_index.html' %}
+
+{% block content %}
+<form method="post" class="center-form" action="{{ url_for('stu_course', sno=sno) }}">
+    <input type="hidden" name="op" value="cno">
+    课程代号 <input type="text" name="cno" autocomplete="off" required>
+    <input class="btn" type="submit" value="检索">
+</form>
+<p></p>
+<form method="post" class="center-form" action="{{ url_for('stu_course', sno=sno) }}">
+    <input type="hidden" name="op" value="cname">
+    课程名 <input type="text" name="cname" autocomplete="off" required>
+    <input class="btn" type="submit" value="检索">
+</form>
+<p></p>
+<div class="center">
+    <form class="inline-form" method="post" action="{{ url_for('stu_course', sno=sno) }}">
+        <input type="hidden" name="op" value="picked">
+        <input class="btn" type="submit" value="只看已选">
+    </form>
+    &nbsp;
+    <form class="inline-form" method="post" action="{{ url_for('stu_course', sno=sno) }}">
+        <input type="hidden" name="op" value="unpicked">
+        <input class="btn" type="submit" value="只看未选">
+    </form>
+</div>
+<table class="gridtable">
+    <tr>
+        <th>代号</th><th>课程名</th><th>院系</th><th>任课教师</th><th>学分</th>
+        <th>开课时间</th><th>上课时间</th><th>选退课</th><th>申请助教</th><th>分数</th>
+    </tr>
+    {% for info in cinfo %}
+    <tr>
+        <td>{{ info['cno'] }}</td>
+        <td>{{ info['cname'] }}</td>
+        {% if info['cdept'] %}
+            <td>{{ info['dname'] }}</td>
+        {% else %}
+            <td>&nbsp;</td>
+        {% endif %}
+        {% if info['cteacher'] %}
+            <td>{% for t in info['cteacher'] %}
+                {{ t }}<br>
+                {% endfor %}</td>
+        {% else %}
+            <td>&nbsp;</td>
+        {% endif %}
+        <td>{{ info['ccredit'] }}</td>
+        <td>{{ info['cdate'] }}</td>
+        <td>{% for rname, time in info['croom'] %}
+            {{ '['+rname+','+time+']' }}<br>
+            {% endfor %}
+        </td>
+        {% if info['pick'] %}
+        <td><form class="inline-form" method="post" action="{{ url_for('stu_course', sno=sno) }}">
+                <input type="hidden" name="op" value="exit">
+                <input type="hidden" name="cno" value="{{ info['cno'] }}">
+                <input class="btn" type="submit" value="退课" onclick="return confirm('确认退选该课程吗？')">
+            </form></td>
+        {% else %}
+        <td><form class="inline-form" method="post" action="{{ url_for('stu_course', sno=sno) }}">
+                <input type="hidden" name="op" value="pick">
+                <input type="hidden" name="cno" value="{{ info['cno'] }}">
+                <input class="btn2" type="submit" value="选课">
+            </form></td>
+        {% endif %}
+        {% if info['agree'] == 'Y' %}
+        <td>已通过</td>
+        {% elif info['agree'] == 'N' %}
+        <td><form class="inline-form" method="post" action="{{ url_for('stu_course', sno=sno) }}">
+                <input type="hidden" name="op" value="cancel">
+                <input type="hidden" name="cno" value="{{ info['cno'] }}">
+                <input class="btn" type="submit" value="撤回">
+            </form></td>
+        {% else %}
+        <td><form class="inline-form" method="post" action="{{ url_for('stu_course', sno=sno) }}">
+                <input type="hidden" name="op" value="apply">
+                <input type="hidden" name="cno" value="{{ info['cno'] }}">
+                <input class="btn2" type="submit" value="申请">
+            </form></td>
+        {% endif %}
+        {% if info['grade'] %}
+        <td>{{ info['grade'] }}</td>
+        {% else %}
+        <td>&nbsp;</td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

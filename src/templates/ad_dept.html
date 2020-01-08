@@ -1,0 +1,33 @@
+{% extends 'lower.html' %}
+
+{% block content %}
+<form method="post" class="center-form" action="{{ url_for('ad_dept') }}">
+    <input type="hidden" name="op" value="new">
+    系号 <input type="text" name="dno" autocomplete="off" required>
+    系名 <input type="text" name="dname" autocomplete="off" required>
+    系主任工号 <input type="text" name="dhead" autocomplete="off">
+    <input class="btn" type="submit" value="新建院系">
+</form>
+<p></p>
+<table class="gridtable">
+    <tr>
+        <th>系号</th><th>系名</th><th>系主任</th><th>删除</th>
+    </tr>
+    {% for info in dinfo %}
+    <tr>
+        <td>{{ info['dno'] }}</td>
+        <td>{{ info['dname'] }}</td>
+        {% if info['dhead'] %}
+            <td>{{ info['dhead'] }}</td>
+        {% else %}
+            <td>&nbsp;</td>
+        {% endif %}
+        <td><form class="inline-form" method="post" action="{{ url_for('ad_dept') }}">
+            <input type="hidden" name="op" value="delete">
+            <input type="hidden" name="dno" value="{{ info['dno'] }}">
+            <input class="btn" type="submit" value="删除" onclick="return confirm('确认删除院系吗？')">
+        </form></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

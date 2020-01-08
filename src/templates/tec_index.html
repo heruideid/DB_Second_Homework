@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block navigate %}
+{% if current_user.has_lower_jw_auth() %}
+<div class="info">您正在以管理身份访问教师{{ tno }}视图，<a href="{{ url_for('index') }}">点击返回</a></div>
+{% endif %}
+<nav>
+    <ul>
+        <li><a href="{{ url_for('tec_index', tno=tno) }}">回到主页</a></li>
+        <li><a href="{{ url_for('tec_info', tno=tno) }}">修改信息</a></li>
+        <li><a href="{{ url_for('tec_pwd', tno=tno) }}">修改密码</a></li>
+        <li><a href="{{ url_for('tec_course', tno=tno) }}">课程管理</a></li>
+        <li><a href="{{ url_for('tec_timetable', tno=tno) }}">查看课表</a></li>
+    </ul>
+</nav>
+{% endblock %}
+{% block content %}
+<div class="index_info">桃李无言，下自成蹊。老师您好！</div>
+{% endblock %}

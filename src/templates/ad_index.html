@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block navigate %}
+<nav>
+    <ul>
+        <li><a href="{{ url_for('ad_index') }}">回到主页</a></li>
+        <li><a href="{{ url_for('ad_info') }}">修改信息</a></li>
+        <li><a href="{{ url_for('ad_pwd') }}">修改密码</a></li>
+        <li><a href="{{ url_for('ad_stu') }}">学生</a></li>
+        <li><a href="{{ url_for('ad_tec') }}">教师</a></li>
+        <li><a href="{{ url_for('ad_crs') }}">课程</a></li>
+        <li><a href="{{ url_for('ad_book') }}">书籍</a></li>
+        <li><a href="{{ url_for('ad_room') }}">教室</a></li>
+        <li><a href="{{ url_for('ad_dept') }}">院系</a></li>
+        <li><a href="{{ url_for('ad_jw') }}">教务</a></li>
+        <li><a href="{{ url_for('ad_everything') }}">高级视图</a></li>
+    </ul>
+</nav>
+{% endblock %}
+{% block content %}
+<div class="index_info">尊敬的管理员，您好！</div>
+{% endblock %}

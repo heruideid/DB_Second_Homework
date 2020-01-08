@@ -1,0 +1,51 @@
+{% extends 'tec_index.html' %}
+
+{% block content %}
+<form method="post" class="center-form" action="{{ url_for('tec_course_info', tno=tno, cno=cno) }}">
+    <input type="hidden" name="op" value="update">
+    课程代号 {{ cinfo['cno'] }}<br>
+    课程名 {{ cinfo['cname'] }}<br>
+    开课院系 {{ cinfo['cdept'] }}<br>
+    课容量 <input type="text" name="ccap" value="{{ cinfo['ccap'] }}" autocomplete="off" required><br>
+    学分 <input type="text" name="ccredit" value="{{ cinfo['ccredit'] }}" autocomplete="off" required><br>
+    开课时间 <input type="text" name="cdate" value="{{ cinfo['cdate'] }}" autocomplete="off" required><br>
+    <input class="btn" type="submit" value="修改">
+</form>
+<p><b>任课教师</b> {{ cinfo['cteacher']|join(';') }}。
+    <form method="post" class="inline-form" action="{{ url_for('tec_course_info', tno=tno, cno=cno) }}">
+        <input type="hidden" name="op" value="newco">
+        教师工号<input type="text" name="tno" autocomplete="off" required>
+        <input class="btn" type="submit" value="添加任课教师">
+    </form></p>
+<p><b>参考书</b> <br><p></p>{% for b in binfo %}
+    {{ b['bno'] }}
+    <form method="post" class="inline-form" action="{{ url_for('tec_course_info', tno=tno, cno=cno) }}">
+        <input type="hidden" name="op" value="deletebook">
+        <input type="hidden" name="bno" value="{{ b['bno'] }}">
+        <input class="btn" type="submit" value="删除">
+    </form><br>
+    {% endfor %}
+    <form method="post" class="inline-form" action="{{ url_for('tec_course_info', tno=tno, cno=cno) }}">
+        <input type="hidden" name="op" value="newbook">
+        ISBN<input type="text" name="bno" autocomplete="off" required>
+        书名<input type="text" name="bname" autocomplete="off" required>
+        <input class="btn2" type="submit" value="添加参考书">
+    </form></p>
+<p><b>助教信息</b><br>
+    {% for ta1 in tainfo[1] %}
+    {{ ta1['sno'] }}-{{ ta1['sname'] }} 已通过<br>
+    {% endfor %}
+    {% for ta0 in tainfo[0] %}
+    {{ ta0['sno'] }}-{{ ta0['sname'] }} <form method="post" class="inline-form" action="{{ url_for('tec_course_info', tno=tno, cno=cno) }}">
+            <input type="hidden" name="op" value="agree">
+            <input type="hidden" name="sno" value="{{ ta0['sno'] }}">
+            <input class="btn2" type="submit" value="同意">
+        </form>
+        <form method="post" class="inline-form" action="{{ url_for('tec_course_info', tno=tno, cno=cno) }}">
+            <input type="hidden" name="op" value="deny">
+            <input type="hidden" name="sno" value="{{ ta0['sno'] }}">
+            <input class="btn" type="submit" value="拒绝">
+        </form><br>
+    {% endfor %}
+</p>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'lower.html' %}
+
+{% block content %}
+<form method="post" class="center-form" action="{{ url_for('ad_room') }}">
+    <input type="hidden" name="op" value="new">
+    教室名 <input type="text" name="rname" autocomplete="off" required>
+    容量 <input type="text" name="rcap" autocomplete="off" required>
+    <input class="btn" type="submit" value="添加教室">
+</form>
+<p></p>
+<table class="gridtable">
+    <tr>
+        <th>教室名</th><th>容量</th><th>删除</th>
+    </tr>
+    {% for info in rinfo %}
+    <tr>
+        <td>{{ info['rname'] }}</td>
+        <td>{{ info['rcap'] }}</td>
+        <td><form class="inline-form" method="post" action="{{ url_for('ad_room') }}">
+            <input type="hidden" name="op" value="delete">
+            <input type="hidden" name="rname" value="{{ info['rname'] }}">
+            <input class="btn" type="submit" value="删除" onclick="return confirm('确认删除教室吗？')">
+        </form></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

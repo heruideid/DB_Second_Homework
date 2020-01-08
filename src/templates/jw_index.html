@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block navigate %}
+{% if current_user.has_ad_auth() %}
+<div class="info">您正在以管理身份访问教务{{ jno }}视图，<a href="{{ url_for('index') }}">点击返回</a></div>
+{% endif %}
+<nav>
+    <ul>
+        <li><a href="{{ url_for('jw_index', jno=jno) }}">回到主页</a></li>
+        <li><a href="{{ url_for('jw_info', jno=jno) }}">修改信息</a></li>
+        <li><a href="{{ url_for('jw_pwd', jno=jno) }}">修改密码</a></li>
+        <li><a href="{{ url_for('ad_stu') }}">学生</a></li>
+        <li><a href="{{ url_for('ad_tec') }}">教师</a></li>
+        <li><a href="{{ url_for('ad_crs') }}">课程</a></li>
+        <li><a href="{{ url_for('ad_book') }}">书籍</a></li>
+        <li><a href="{{ url_for('ad_room') }}">教室</a></li>
+        <li><a href="{{ url_for('ad_dept') }}">院系</a></li>
+    </ul>
+</nav>
+{% endblock %}
+{% block content %}
+<div class="index_info">尊敬的教务人员，欢迎您！</div>
+{% endblock %}

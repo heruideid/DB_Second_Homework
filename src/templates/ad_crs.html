@@ -1,0 +1,33 @@
+{% extends 'lower.html' %}
+
+{% block content %}
+<form method="post" class="center-form" action="{{ url_for('ad_crs') }}">
+    <input type="hidden" name="op" value="cno">
+    课程号 <input type="text" name="cno" autocomplete="off" required>
+    <input class="btn" type="submit" value="检索">
+</form>
+<p></p>
+<form method="post" class="center-form" action="{{ url_for('ad_crs') }}">
+    <input type="hidden" name="op" value="cname">
+    课程名 <input type="text" name="cname" autocomplete="off" required>
+    <input class="btn" type="submit" value="检索">
+</form>
+<p></p>
+<table class="gridtable">
+    <tr>
+        <th>课程代号</th><th>课程名</th><th>排课</th><th>删除</th>
+    </tr>
+    {% for info in cinfo %}
+    <tr>
+        <td>{{ info['cno'] }}</td>
+        <td>{{ info['cname'] }}</td>
+        <td><a class="btn" href="{{ url_for('ad_crs_time', cno=info['cno']) }}" title="排课">排课</a></td>
+        <td><form class="inline-form" method="post" action="{{ url_for('ad_crs') }}">
+            <input type="hidden" name="op" value="delete">
+            <input type="hidden" name="cno" value="{{ info['cno'] }}">
+            <input class="btn" type="submit" value="删除" onclick="return confirm('确认删除课程吗？')">
+        </form></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

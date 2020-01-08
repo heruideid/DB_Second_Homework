@@ -1,0 +1,224 @@
+body {
+    margin: auto;
+    max-width: 700px;
+    font-size: 14px;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.index_info {
+    text-align: center;
+}
+
+.alert {
+    position: relative;
+    padding: 7px;
+    margin: 7px 0;
+    border: 1px solid transparent;
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+    border-radius: 5px;
+}
+
+.info {
+    position: relative;
+    padding: 7px;
+    margin: 7px 0;
+    border: 1px solid transparent;
+    color: #004085;
+    background-color: #e4f582;
+    border-color: #b8daff;
+    border-radius: 5px;
+}
+
+.user_logo {
+    display: block;
+    float: left;
+    height: 30px;
+}
+
+.buaa_logo {
+    display: block;
+    margin: 0 auto;
+    height: 100px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(1, 1, 109);
+}
+
+nav li {
+    float: left;
+}
+
+nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 8px 12px;
+    text-decoration: none;
+}
+
+nav li a:hover {
+    background-color: rgb(1, 1, 109);
+}
+
+.info-list {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.info-list li {
+    padding: 12px 24px;
+    border-bottom: 1px solid #ddd;
+}
+    
+.info-list li:last-child {
+    border-bottom:none;
+}
+    
+.info-list li:hover {
+    background-color: #f8f9fa;
+}
+
+.float-right {
+    float: right;
+}
+
+.center {
+    text-align:center;
+    margin: 0 auto;
+}
+
+.cln-link {
+    font-size: 12px;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+    background: #F5C518;
+    border-radius: 5px;
+    padding: 3px 5px;
+}
+
+footer {
+    color: #888;
+    margin-top: 15px;
+    text-align: center;
+    padding: 10px;
+}
+
+table.gridtable {
+    margin: 0 auto;
+    font-family: verdana,arial,sans-serif;
+    font-size:11px;
+    color:#333333;
+    border-width: 1px;
+    border-color: #666666;
+    border-collapse: collapse;
+}
+
+table.gridtable th {
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #666666;
+    background-color: #dedede;
+}
+
+table.gridtable td {
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #666666;
+    background-color: #ffffff;
+}
+
+input[type=submit] {
+    font-family: inherit;
+}
+
+input[type=text] {
+    width: 160px;
+    border: 1px solid #ddd;
+}
+
+input[type=password] {
+    width: 160px;
+    border: 1px solid #ddd;
+}
+
+input.short {
+    width: 80px;
+    border: 1px solid #ddd;
+}
+
+input[name=grade] {
+    width: 40px;
+}
+
+select {  
+    background:#fafdfe;  
+    height:28px;  
+    width:80px;  
+    line-height:28px;  
+    border:1px solid #9bc0dd;   
+    border-radius:2px;  
+}
+
+.btn {
+    font-size: 12px;
+    padding: 3px 5px;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    border: 1px solid #555555;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    text-decoration: none;
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+}
+
+.btn2 {
+    font-size: 12px;
+    padding: 3px 5px;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: blue;
+    color: white;
+    border: 1px solid #555555;
+    border-radius: 5px;
+}
+
+.btn2:hover {
+    text-decoration: none;
+    background-color: blue;
+    color: white;
+    border: 1px solid black;
+}
+
+form.center-form {
+    width:100%;
+    text-align:center;
+    margin: 0 auto;
+}
+
+form.left-form {
+    width:100%;
+    text-align:left;
+    margin: 0 auto;
+}
+
+.inline-form {
+    display: inline;
+}

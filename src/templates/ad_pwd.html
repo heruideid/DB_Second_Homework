@@ -1,0 +1,9 @@
+{% extends 'ad_index.html' %}
+
+{% block content %}
+<form method="post" class="center-form" action="{{ url_for('ad_pwd') }}">
+    原密码 <input type="password" name="old" autocomplete="off" required><p></p>
+    新密码 <input type="password" name="new" autocomplete="off" required><p></p>
+    <input class="btn" type="submit" value="修改">
+</form>
+{% endblock %}

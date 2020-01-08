@@ -1,0 +1,50 @@
+{% extends 'tec_index.html' %}
+
+{% block content %}
+<form method="post" class="center-form" action="{{ url_for('tec_course_stu', tno=tno, cno=cno) }}">
+    <input type="hidden" name="op" value="sno">
+    学号 <input type="text" name="sno" autocomplete="off" required>
+    <input class="btn" type="submit" value="检索">
+</form>
+<p></p>
+<form method="post" class="center-form" action="{{ url_for('stu_course', sno=sno) }}">
+    <input type="hidden" name="op" value="sname">
+    姓名 <input type="text" name="sname" autocomplete="off" required>
+    <input class="btn" type="submit" value="检索">
+</form>
+<p></p>
+<table class="gridtable">
+    <tr>
+        <th>学号</th><th>姓名</th><th>院系</th><th>联系电话</th><th>成绩</th>
+        <th>更新成绩</th>
+    </tr>
+    {% for info in sinfo %}
+    <tr>
+        <td>{{ info['sno'] }}</td>
+        <td>{{ info['sname'] }}</td>
+        {% if info['sdept'] %}
+            <td>{{ info['sdept'] }}</td>
+        {% else %}
+            <td>&nbsp;</td>
+        {% endif %}
+        {% if info['stel'] %}
+            <td>{{ info['stel'] }}</td>
+        {% else %}
+            <td>&nbsp;</td>
+        {% endif %}
+        {% if info['grade'] %}
+            <td>{{ info['grade'] }}</td>
+        {% else %}
+            <td>&nbsp;</td>
+        {% endif %}
+        <td><form class="inline-form" method="post" action="{{ url_for('tec_course_stu', tno=tno, cno=cno) }}">
+                <input type="hidden" name="op" value="grade">
+                <input type="hidden" name="cno" value="{{ cno }}">
+                <input type="hidden" name="sno" value="{{ info['sno'] }}">
+                <input type="text" name="grade">
+                <input class="btn" type="submit" value="确认">
+            </form></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'stu_index.html' %}
+
+{% block content %}
+<form method="post" class="center-form" action="{{ url_for('stu_info', sno=sno) }}">
+    学号 {{ sinfo['sno'] }}<br>
+    身份证号 {{ sinfo['sid'] }}<br>
+    姓名 {{ sinfo['sname'] }}<br>
+    系号 {{ sinfo['sdept'] }}<br>
+    性别 {{ sinfo['ssex'] }}<br>
+    电话 <input type="text" name="stel" value="{{ sinfo['stel'] }}" autocomplete="off"><br>
+    <input class="btn" type="submit" value="修改">
+</form>
+{% endblock %}

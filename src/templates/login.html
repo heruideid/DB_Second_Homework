@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="post" class="center-form" action="{{ url_for('login') }}">
+    <select name="status">
+        <option value='Student'>学生</option>
+        <option value='Teacher'>教师</option>
+        <option value='Jiaowu'>教务</option>
+        <option value='Administrator'>管理员</option>
+    </select>
+    用户名 <input class="short" type="text" name="no" autocomplete="off" required>
+    密码 <input class="short" type="password" name="pwd" autocomplete="off" required>
+    <input class="btn" type="submit" value="登录">
+</form>
+{% endblock %}

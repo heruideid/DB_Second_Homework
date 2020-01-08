@@ -1,0 +1,10 @@
+{% extends 'ad_index.html' %}
+
+{% block content %}
+<form method="post" class="center-form" action="{{ url_for('ad_info') }}">
+    账号 {{ ainfo['ano'] }}<br>
+    电话 <input type="text" name="atel" value="{{ ainfo['atel'] }}" autocomplete="off"><br>
+    邮箱 <input type="text" name="amail" value="{{ ainfo['amail'] }}" autocomplete="off"><br>
+    <input class="btn" type="submit" value="修改">
+</form>
+{% endblock %}

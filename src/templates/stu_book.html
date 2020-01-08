@@ -1,0 +1,21 @@
+{% extends 'stu_index.html' %}
+
+{% block content %}
+<table class="gridtable">
+    <tr>
+        <th>ISBN</th><th>书名</th><th>库存</th><th>已购数量</th><th>购买</th>
+    </tr>
+    {% for info in all_book %}
+    <tr>
+        <td>{{ info['bno'] }}</td>
+        <td>{{ info['bname'] }}</td>
+        <td>{{ info['bstore'] }}</td>
+        <td>{{ info['bcnt'] }}</td>
+        <td><form class="inline-form" method="post" action="{{ url_for('stu_book', sno=sno) }}">
+                <input type="hidden" name="bno" value="{{ info['bno'] }}">
+                <input class="btn" type="submit" value="购书">
+            </form></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

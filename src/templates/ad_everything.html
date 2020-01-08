@@ -1,0 +1,33 @@
+{% extends 'ad_index.html' %}
+
+{% block content %}
+<p>在高级视图中，您可以直接调用后端函数来完成任意操作。传参形式为“key=value”，用英文逗号隔开。</p>
+<form method="post" class="center-form" action="{{ url_for('ad_everything') }}">
+    <select name="op">
+        <option value='new'>新建</option>
+        <option value='modify'>修改</option>
+        <option value='delete'>删除</option>
+        <option value='query'>查询</option>
+    </select>
+    <select name="table">
+        <option value='Student'>学生</option>
+        <option value='Teacher'>教师</option>
+        <option value='Jiaowu'>教务</option>
+        <option value='Course'>课程</option>
+        <option value='Book'>教材</option>
+        <option value='Room'>教室</option>
+        <option value='Department'>院系</option>
+        <option value='CB'>参考书目</option>
+        <option value='CR'>排课信息</option>
+        <option value='SC'>选课信息</option>
+        <option value='TC'>授课信息</option>
+        <option value='CTA'>助教信息</option>
+        <option value='SB'>购书信息</option>
+    </select>
+    参数 <input type="text" name="attrib" autocomplete="off">
+    <input class="btn" type="submit" value="确定">
+</form>
+{% for x in info %}
+{{ x }}<br>
+{% endfor %}
+{% endblock %}

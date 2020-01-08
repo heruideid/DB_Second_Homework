@@ -1,0 +1,14 @@
+{% extends 'tec_index.html' %}
+
+{% block content %}
+<form method="post" class="center-form" action="{{ url_for('tec_info', tno=tno) }}">
+    工号 {{ tinfo['tno'] }}<br>
+    身份证号 {{ tinfo['tid'] }}<br>
+    姓名 {{ tinfo['tname'] }}<br>
+    性别 {{ tinfo['tsex'] }}<br>
+    系号 <input type="text" name="tdept" value="{{ tinfo['tdept'] }}" autocomplete="off"><br>
+    电话 <input type="text" name="ttel" value="{{ tinfo['ttel'] }}" autocomplete="off"><br>
+    邮箱 <input type="text" name="tmail" value="{{ tinfo['tmail'] }}" autocomplete="off"><br>
+    <input class="btn" type="submit" value="修改">
+</form>
+{% endblock %}

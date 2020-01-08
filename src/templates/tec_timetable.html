@@ -1,0 +1,22 @@
+{% extends 'tec_index.html' %}
+
+{% block content %}
+<table class="gridtable">
+    <tr>
+        <th>节数</th><th>周一</th><th>周二</th><th>周三</th><th>周四</th><th>周五</th><th>周六</th><th>周日</th>
+    </tr>
+    {% for j in range(14) %}
+    <tr>
+        <td>{{ j + 1 }}</td>
+        {% for i in range(7) %}
+        <td>{% if table[i][j] %}
+            {% for cname, croom in table[i][j] %}
+            {{ '['+cname+','+croom+']' }}
+            {% endfor %}
+            {% endif %}
+        </td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

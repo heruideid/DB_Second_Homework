@@ -1,0 +1,12 @@
+{% extends 'jw_index.html' %}
+
+{% block content %}
+<form method="post" class="center-form" action="{{ url_for('jw_info', jno=jno) }}">
+    工号 {{ jinfo['jno'] }}<br>
+    身份证号 {{ jinfo['jid'] }}<br>
+    姓名 {{ jinfo['jname'] }}<br>
+    电话 <input type="text" name="jtel" value="{{ jinfo['jtel'] }}" autocomplete="off"><br>
+    邮箱 <input type="text" name="jmail" value="{{ jinfo['jmail'] }}" autocomplete="off"><br>
+    <input class="btn" type="submit" value="修改">
+</form>
+{% endblock %}

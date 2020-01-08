@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block navigate %}
+{% if current_user.has_ad_auth() %}
+<nav>
+    <ul>
+        <li><a href="{{ url_for('ad_index') }}">回到主页</a></li>
+        <li><a href="{{ url_for('ad_info') }}">修改信息</a></li>
+        <li><a href="{{ url_for('ad_pwd') }}">修改密码</a></li>
+        <li><a href="{{ url_for('ad_stu') }}">学生</a></li>
+        <li><a href="{{ url_for('ad_tec') }}">教师</a></li>
+        <li><a href="{{ url_for('ad_crs') }}">课程</a></li>
+        <li><a href="{{ url_for('ad_book') }}">书籍</a></li>
+        <li><a href="{{ url_for('ad_room') }}">教室</a></li>
+        <li><a href="{{ url_for('ad_dept') }}">院系</a></li>
+        <li><a href="{{ url_for('ad_jw') }}">教务</a></li>
+        <li><a href="{{ url_for('ad_jw') }}">高级视图</a></li>
+    </ul>
+</nav>
+{% else %}
+<nav>
+    <ul>
+        <li><a href="{{ url_for('jw_index', jno=current_user.no) }}">回到主页</a></li>
+        <li><a href="{{ url_for('jw_info', jno=current_user.no) }}">修改信息</a></li>
+        <li><a href="{{ url_for('jw_pwd', jno=current_user.no) }}">修改密码</a></li>
+        <li><a href="{{ url_for('ad_stu') }}">学生</a></li>
+        <li><a href="{{ url_for('ad_tec') }}">教师</a></li>
+        <li><a href="{{ url_for('ad_crs') }}">课程</a></li>
+        <li><a href="{{ url_for('ad_book') }}">书籍</a></li>
+        <li><a href="{{ url_for('ad_room') }}">教室</a></li>
+        <li><a href="{{ url_for('ad_dept') }}">院系</a></li>
+    </ul>
+</nav>
+{% endif %}
+{% endblock %}
